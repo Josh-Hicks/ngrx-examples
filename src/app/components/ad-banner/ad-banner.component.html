@@ -1,0 +1,11 @@
+<div class="image-container">
+  <img
+    src="assets/ad.jpg"
+    alt="Marketing banner"
+    *ngIf="enrolled; else enrollBtn"
+  />
+</div>
+
+<ng-template #enrollBtn>
+  <button id="enrollBtn" (click)="emitEnrollEvent()">Enroll</button>
+</ng-template>

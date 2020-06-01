@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #14213d;
+  color: snow;
+  font-family: "Open Sans", sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+button {
+  background-color: #fca311;
+  color: black;
+  text-transform: capitalize;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  font-size: 1.25rem;
+  border: none;
+}
+
+a {
+  color: #fca311;
+}

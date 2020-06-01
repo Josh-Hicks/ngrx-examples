@@ -1,0 +1,15 @@
+<div id="accordion">
+  <div class="accordion-header">
+    <button (click)="emitToggleAccordion()">
+      <i *ngIf="!open">+</i><i *ngIf="open">-</i>
+    </button>
+  </div>
+  <div class="accordion-content" *ngIf="open">
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio
+      aspernatur id totam magnam assumenda praesentium repudiandae magni, iusto
+      sit consequuntur deserunt excepturi dolor, incidunt eligendi? Labore
+      tenetur laboriosam eligendi recusandae.
+    </p>
+  </div>
+</div>

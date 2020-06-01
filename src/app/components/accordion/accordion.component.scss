@@ -1,0 +1,24 @@
+#accordion {
+  border: 1px solid snow;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  max-width: 500px;
+
+  .accordion-header {
+    text-align: right;
+    border-bottom: 1px solid snow;
+
+    button {
+      border: 1px solid #fca311;
+      background-color: transparent;
+      color: #fca311;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      width: 3rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

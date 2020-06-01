@@ -1,0 +1,40 @@
+<div id="homePageContainer">
+  <!-- Example 1: Fetch Users From An API-->
+  <div id="usersContainer">
+    <h2>Example 1: Fetch User Data</h2>
+    <ul id="users" *ngIf="facade.users$ | async as users; else fetchUsersBtn">
+      <ng-container *ngFor="let user of users">
+        <ne-user [user]="user"></ne-user>
+      </ng-container>
+    </ul>
+
+    <ng-template #fetchUsersBtn>
+      <button (click)="fetchUsers()">Fetch Users</button>
+    </ng-template>
+  </div>
+
+  <!-- Example 2: Accordion UI State -->
+  <div id="accordionContainer">
+    <h2>Example 2: Accordion UI State</h2>
+    <ne-accordion
+      [open]="facade.accordionOpen$ | async"
+      (click)="toggleAccordion()"
+    >
+    </ne-accordion>
+  </div>
+
+  <!-- Example 3: User Account Settings -->
+  <div id="marketingBannerContainer">
+    <h2>Example 3: User Account Settings</h2>
+    <ne-ad-banner
+      [enrolled]="facade.enrolled$ | async"
+      (enrollEvent)="enroll($event)"
+    ></ne-ad-banner>
+  </div>
+
+  <!-- Example 4: Router Store -->
+  <div id="signOutContainer">
+    <h2>Example 4: Router Store</h2>
+    <a [routerLink]="['/signout']">Sign Out</a>
+  </div>
+</div>
