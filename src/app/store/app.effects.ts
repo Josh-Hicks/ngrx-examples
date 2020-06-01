@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { routerRequestAction } from '@ngrx/router-store';
+import {
+  routerRequestAction,
+  RouterNavigatedAction,
+  ROUTER_NAVIGATION,
+} from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import {
@@ -35,8 +39,8 @@ export class AppEffects {
   // Example 4: Router Store
   onSignOut$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(routerRequestAction),
-      filter((action) => action.payload.routerState.url === '/signout'),
+      ofType<RouterNavigatedAction>(ROUTER_NAVIGATION),
+      filter((action) => action.payload.routerState.url.includes('signout')),
       map((action) => AppActions.userSignOut())
     );
   });

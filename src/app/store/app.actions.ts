@@ -14,7 +14,7 @@ export const fetchUsersFailure = createAction(
 
 export const userSignIn = createAction('[App Home] User Sign In');
 
-export const userSignOut = createAction('[App Home] User Sign In');
+export const userSignOut = createAction('[App Home] User Sign out');
 
 export const userEnroll = createAction('[App Home] User Enroll');
 
