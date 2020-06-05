@@ -13,6 +13,7 @@ import {
   filter,
   map,
   withLatestFrom,
+  switchMap,
 } from 'rxjs/operators';
 import { UserService } from '../data/users.service';
 import * as AppActions from './app.actions';
@@ -27,7 +28,7 @@ export class AppEffects {
       ofType(AppActions.fetchUsers),
       withLatestFrom(this.store.select(selectAppUsers)),
       filter(([action, users]) => users === null),
-      concatMap(() =>
+      switchMap(() =>
         this.userService.fetchUsers().pipe(
           map((data) => AppActions.fetchUsersSuccess({ data })),
           catchError((error) => of(AppActions.fetchUsersFailure({ error })))
