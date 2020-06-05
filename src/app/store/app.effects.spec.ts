@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { Observable, of, from } from 'rxjs';
-
-import { AppEffects } from './app.effects';
-import * as AppActions from './app.actions';
-import { UserService } from '../data/users.service';
-import { AppState } from './app.reducer';
 import { ROUTER_NAVIGATION } from '@ngrx/router-store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { Observable, of } from 'rxjs';
+import { UserService } from '../data/users.service';
+import * as AppActions from './app.actions';
+import { AppEffects } from './app.effects';
+import { AppState } from './app.reducer';
 
 const initialState = {
   users: null,
