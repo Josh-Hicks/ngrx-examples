@@ -111,6 +111,7 @@ describe('AppEffects', () => {
 
       actions$ = of(AppActions.userEnroll());
       effects.onEnroll$.subscribe((action) => {
+        expect(action).toEqual(AppActions.userEnroll());
         expect(spy).toHaveBeenCalled();
         done();
       });
