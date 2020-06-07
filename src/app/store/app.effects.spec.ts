@@ -73,18 +73,20 @@ describe('AppEffects', () => {
     expect(effects).toBeTruthy();
   });
 
+  // Testing API interaction
   describe('onFetchUsers$', () => {
     it('should fire if users is null', (done) => {
       const spy = spyOn(httpService, 'fetchUsers').and.callThrough();
       actions$ = of(AppActions.fetchUsers);
       effects.onFetchUsers$.subscribe((res) => {
         expect(res).toEqual(AppActions.fetchUsersSuccess({ data: mockUsers }));
-        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledTimes(1);
         done();
       });
     });
   });
 
+  // Testing interaction with Router-Store
   describe('onSignOut$', () => {
     it('should dispatch userSignOut if route matches', (done) => {
       actions$ = of({
@@ -97,6 +99,19 @@ describe('AppEffects', () => {
       });
       effects.onSignOut$.subscribe((action) => {
         expect(action).toEqual(AppActions.userSignOut());
+        done();
+      });
+    });
+  });
+
+  // Testing non-dispatching side-effect
+  describe('onEnroll$', () => {
+    it('should set item in local storage', (done) => {
+      const spy = spyOn(localStorage, 'setItem').and.callFake(() => true);
+
+      actions$ = of(AppActions.userEnroll());
+      effects.onEnroll$.subscribe((action) => {
+        expect(spy).toHaveBeenCalled();
         done();
       });
     });

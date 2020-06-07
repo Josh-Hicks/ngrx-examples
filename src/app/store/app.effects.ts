@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  routerRequestAction,
-  RouterNavigatedAction,
-  ROUTER_NAVIGATION,
-} from '@ngrx/router-store';
+import { RouterNavigatedAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import {
   catchError,
-  concatMap,
   filter,
   map,
-  withLatestFrom,
   switchMap,
+  tap,
+  withLatestFrom,
 } from 'rxjs/operators';
 import { UserService } from '../data/users.service';
 import * as AppActions from './app.actions';
@@ -45,6 +41,22 @@ export class AppEffects {
       map((action) => AppActions.userSignOut())
     );
   });
+
+  onEnroll$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AppActions.userEnroll),
+        tap((action) => {
+          if (localStorage && !localStorage.getItem('enrolled')) {
+            localStorage.setItem('enrolled', JSON.stringify(Date.now()));
+          }
+        })
+      );
+    },
+    {
+      dispatch: false,
+    }
+  );
 
   constructor(
     private actions$: Actions,
