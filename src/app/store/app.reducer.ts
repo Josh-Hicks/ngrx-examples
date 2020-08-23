@@ -25,21 +25,6 @@ export const initialState: AppState = {
 
 export const appReducer = createReducer(
   initialState,
-
-  on(AppActions.userSignIn, (state) => ({ ...state, signedIn: true })),
-  on(AppActions.userSignOut, (state) => ({ ...state, signedIn: false })),
-  on(AppActions.toggleAccordion, (state) => ({
-    ...state,
-    accordionOpen: !state.accordionOpen,
-  })),
-  on(AppActions.userEnroll, (state) => ({
-    ...state,
-    settings: { ...state.settings, enrolled: true },
-  })),
-  on(AppActions.userUnenroll, (state) => ({
-    ...state,
-    settings: { ...state.settings, enrolled: false },
-  })),
   on(AppActions.fetchUsersSuccess, (state, action) => ({
     ...state,
     users: action.data,
@@ -47,6 +32,20 @@ export const appReducer = createReducer(
   on(AppActions.fetchUsersFailure, (state, action) => ({
     ...state,
     error: action.error,
+  })),
+  on(AppActions.toggleAccordion, (state) => ({
+    ...state,
+    accordionOpen: !state.accordionOpen,
+  })),
+  on(AppActions.userSignIn, (state) => ({ ...state, signedIn: true })),
+  on(AppActions.userSignOut, (state) => ({ ...state, signedIn: false })),
+  on(AppActions.userEnroll, (state) => ({
+    ...state,
+    settings: { ...state.settings, enrolled: true },
+  })),
+  on(AppActions.userUnenroll, (state) => ({
+    ...state,
+    settings: { ...state.settings, enrolled: false },
   }))
 );
 

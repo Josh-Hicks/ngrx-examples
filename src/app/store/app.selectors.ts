@@ -10,6 +10,11 @@ export const selectAppUsers = createSelector(
   (state: fromApp.AppState) => (state ? state.users : null)
 );
 
+export const selectAppAccordionOpen = createSelector(
+  selectAppState,
+  (state: fromApp.AppState) => (state ? state.accordionOpen : null)
+);
+
 export const selectAppSignedIn = createSelector(
   selectAppState,
   (state: fromApp.AppState) => (state ? state.signedIn : null)
@@ -18,11 +23,6 @@ export const selectAppSignedIn = createSelector(
 export const selectAppEnrolled = createSelector(
   selectAppState,
   (state: fromApp.AppState) => (state ? state.settings.enrolled : null)
-);
-
-export const selectAppAccordionOpen = createSelector(
-  selectAppState,
-  (state: fromApp.AppState) => (state ? state.accordionOpen : null)
 );
 
 export const selectAppError = createSelector(
