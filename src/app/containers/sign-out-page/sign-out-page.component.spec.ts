@@ -1,32 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Store, StoreModule } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { userSignIn } from 'src/app/store/app.actions';
+import { Mock, mockService } from 'src/test-utils';
 import { SignOutPageComponent } from './sign-out-page.component';
+import { SignOutPageFacade } from './sign-out-page.facade';
 
-describe('SignOutPageComponent', () => {
+describe('SignOutPageComponent2', () => {
   let component: SignOutPageComponent;
-  let fixture: ComponentFixture<SignOutPageComponent>;
-  let store: Store;
 
-  beforeEach(async () => {
-    TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot({}), RouterTestingModule],
-      declarations: [SignOutPageComponent],
-    });
-
-    await TestBed.compileComponents();
-  });
+  let router: Mock<Router>;
+  let facade: Mock<SignOutPageFacade>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignOutPageComponent);
-    component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    router = mockService(Router);
+    facade = mockService(SignOutPageFacade);
 
-    spyOn(store, 'dispatch').and.callThrough();
-    fixture.detectChanges();
+    component = new SignOutPageComponent(facade, router);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should dispatch UserSignIn and navigate to home onLogin', () => {
+    // given & when
+    component.login();
+
+    // then
+    expect(router.navigateByUrl).toHaveBeenCalledWith('/home');
+    expect(facade.dispatch).toHaveBeenCalledWith(userSignIn());
   });
 });
