@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { userSignIn } from '../../store/app.actions';
 import { SignOutPageFacade } from './sign-out-page.facade';
@@ -9,10 +9,8 @@ import { SignOutPageFacade } from './sign-out-page.facade';
   styleUrls: ['./sign-out-page.component.scss'],
   providers: [SignOutPageFacade],
 })
-export class SignOutPageComponent implements OnInit {
+export class SignOutPageComponent {
   constructor(public facade: SignOutPageFacade, private router: Router) {}
-
-  ngOnInit(): void {}
 
   login() {
     this.facade.dispatch(userSignIn());

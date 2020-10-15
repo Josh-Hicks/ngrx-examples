@@ -1,10 +1,9 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  EventEmitter,
-  Output,
   ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
 } from '@angular/core';
 
 @Component({
@@ -13,12 +12,9 @@ import {
   styleUrls: ['./ad-banner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdBannerComponent implements OnInit {
+export class AdBannerComponent {
   @Input() enrolled: boolean;
   @Output() enrollEvent = new EventEmitter();
-  constructor() {}
-
-  ngOnInit(): void {}
 
   emitEnrollEvent() {
     this.enrollEvent.emit();

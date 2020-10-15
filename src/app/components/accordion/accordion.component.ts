@@ -3,8 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
-  Output,
+  Output
 } from '@angular/core';
 
 @Component({
@@ -13,13 +12,9 @@ import {
   styleUrls: ['./accordion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccordionComponent implements OnInit {
+export class AccordionComponent {
   @Input() open: boolean;
   @Output() toggleAccordion = new EventEmitter();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   emitToggleAccordion() {
     this.toggleAccordion.emit();
