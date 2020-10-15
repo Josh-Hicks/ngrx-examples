@@ -1,13 +1,10 @@
-import { Action, ActionsSubject, ReducerManager } from '@ngrx/store';
+import { EventEmitter, Type } from '@angular/core';
+import { ActionsSubject, ReducerManager } from '@ngrx/store';
 import { MockState, MockStore } from '@ngrx/store/testing';
 
 export type Mock<T> = jasmine.SpyObj<T>;
 
-interface ConstructorFunction {
-  prototype: any;
-}
-
-export function mockService<T>(serviceClass: ConstructorFunction): Mock<T> {
+export function mockService<T>(serviceClass: Type<T>): Mock<T> {
   const [, ...methods] = Object.getOwnPropertyNames(serviceClass.prototype);
   return jasmine.createSpyObj(methods);
 }
@@ -25,15 +22,10 @@ export function mockStore<T>(): MockStore<T> {
   );
 }
 
-interface ActionIterator {
-  nextAction(): Action;
+export function mockEmiter<T>(): Mock<EventEmitter<T>> {
+  return mockService<EventEmitter<T>>(MockEmmiter);
 }
 
-export function actionsIterator(...actions: Action[]): ActionIterator {
-  let counter = 0;
-  return {
-    nextAction(): Action {
-      return actions[counter++];
-    },
-  };
+class MockEmmiter<T> extends EventEmitter<T> {
+  emit(value?: T): void {}
 }

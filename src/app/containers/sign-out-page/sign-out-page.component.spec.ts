@@ -4,7 +4,7 @@ import { Mock, mockService } from 'src/test-utils';
 import { SignOutPageComponent } from './sign-out-page.component';
 import { SignOutPageFacade } from './sign-out-page.facade';
 
-describe('SignOutPageComponent2', () => {
+describe('SignOutPageComponent', () => {
   let component: SignOutPageComponent;
 
   let router: Mock<Router>;

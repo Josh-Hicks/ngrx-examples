@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { HomePageFacade } from './home-page.facade';
+import { Component } from '@angular/core';
 import {
-  toggleAccordion,
   fetchUsers,
-  userEnroll,
+  toggleAccordion,
+  userEnroll
 } from '../../store/app.actions';
+import { HomePageFacade } from './home-page.facade';
 
 @Component({
   selector: 'ne-home-page',
@@ -12,10 +12,8 @@ import {
   styleUrls: ['./home-page.component.scss'],
   providers: [HomePageFacade],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
   constructor(public facade: HomePageFacade) {}
-
-  ngOnInit(): void {}
 
   toggleAccordion() {
     this.facade.dispatch(toggleAccordion());
@@ -25,7 +23,7 @@ export class HomePageComponent implements OnInit {
     this.facade.dispatch(fetchUsers());
   }
 
-  enroll(e) {
+  enroll() {
     this.facade.dispatch(userEnroll());
   }
 }

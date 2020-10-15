@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Store, Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import * as fromApp from 'src/app/store/app.reducer';
 import {
-  selectAppUsers,
-  selectAppSignedIn,
-  selectAppEnrolled,
   selectAppAccordionOpen,
+  selectAppEnrolled,
+  selectAppSignedIn,
+  selectAppUsers
 } from 'src/app/store/app.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class HomePageFacade {
   constructor(private store: Store<fromApp.AppState>) {}
 

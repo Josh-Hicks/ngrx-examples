@@ -1,4 +1,4 @@
-import { createReducer, on, State, Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import * as AppActions from './app.actions';
 
 export const appFeatureKey = 'app';

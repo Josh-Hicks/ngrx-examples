@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { RouterNavigatedAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import {
   catchError,
@@ -9,8 +9,9 @@ import {
   map,
   switchMap,
   tap,
-  withLatestFrom,
+  withLatestFrom
 } from 'rxjs/operators';
+import { LocalStorageService } from '../data/local-storage.service';
 import { UserService } from '../data/users.service';
 import * as AppActions from './app.actions';
 import { AppState } from './app.reducer';
@@ -22,7 +23,7 @@ export class AppEffects {
   onFetchUsers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AppActions.fetchUsers),
-      withLatestFrom(this.store.select(selectAppUsers)),
+      withLatestFrom(this.store.pipe(select(selectAppUsers))),
       filter(([action, users]) => users === null),
       switchMap(() =>
         this.userService.fetchUsers().pipe(
@@ -47,8 +48,8 @@ export class AppEffects {
       return this.actions$.pipe(
         ofType(AppActions.userEnroll),
         tap((action) => {
-          if (localStorage && !localStorage.getItem('enrolled')) {
-            localStorage.setItem('enrolled', JSON.stringify(Date.now()));
+          if (this.localStorage && !this.localStorage.getItem('enrolled')) {
+            this.localStorage.setItem('enrolled', JSON.stringify(Date.now()));
           }
         })
       );
@@ -61,6 +62,7 @@ export class AppEffects {
   constructor(
     private actions$: Actions,
     private userService: UserService,
+    private localStorage: LocalStorageService,
     private store: Store<AppState>
   ) {}
 }
