@@ -1,4 +1,9 @@
 import { Action, Store } from '@ngrx/store';
+import {
+  fetchUsers,
+  toggleAccordion,
+  userEnroll
+} from 'src/app/store/app.actions';
 import { AppState } from 'src/app/store/app.reducer';
 import { Mock, mockService } from 'src/test-utils';
 import { HomePageFacade } from './home-page.facade';
@@ -13,12 +18,36 @@ describe('HomePageFacade', () => {
     facade = new HomePageFacade(store);
   });
 
-  it('should invoke store dispatch on dispatch', () => {
+  it('should dispatch toggleAccordion', () => {
     // given
-    const action: Action = { type: 'Test Action' };
+    const action: Action = toggleAccordion();
 
     // when
-    facade.dispatch(action);
+    facade.toggleAccordion();
+
+    // then
+    expect(store.dispatch).toHaveBeenCalled();
+    expect(store.dispatch).toHaveBeenCalledWith(action);
+  });
+
+  it('should dispatch userEnroll', () => {
+    // given
+    const action: Action = userEnroll();
+
+    // when
+    facade.enroll();
+
+    // then
+    expect(store.dispatch).toHaveBeenCalled();
+    expect(store.dispatch).toHaveBeenCalledWith(action);
+  });
+
+  it('should dispatch fetchUsers', () => {
+    // given
+    const action: Action = fetchUsers();
+
+    // when
+    facade.fetchUsers();
 
     // then
     expect(store.dispatch).toHaveBeenCalled();

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { userSignIn } from 'src/app/store/app.actions';
 import * as fromApp from 'src/app/store/app.reducer';
 import { selectAppSignedIn } from 'src/app/store/app.selectors';
 
@@ -9,7 +10,7 @@ export class SignOutPageFacade {
 
   signedIn$ = this.store.select(selectAppSignedIn);
 
-  dispatch(action: Action) {
-    this.store.dispatch(action);
+  signIn() {
+    this.store.dispatch(userSignIn());
   }
 }

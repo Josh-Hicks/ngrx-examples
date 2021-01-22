@@ -1,4 +1,5 @@
 import { Action, Store } from '@ngrx/store';
+import { userSignIn } from 'src/app/store/app.actions';
 import { AppState } from 'src/app/store/app.reducer';
 import { Mock, mockService } from 'src/test-utils';
 import { SignOutPageFacade } from './sign-out-page.facade';
@@ -13,12 +14,12 @@ describe('SignOutPageFacade', () => {
     facade = new SignOutPageFacade(store);
   });
 
-  it('should invoke store dispatch on dispatch', () => {
+  it('should dispatch userSignIn', () => {
     // given
-    const action: Action = { type: 'Test Action' };
+    const action: Action = userSignIn();
 
     // when
-    facade.dispatch(action);
+    facade.signIn();
 
     // then
     expect(store.dispatch).toHaveBeenCalled();

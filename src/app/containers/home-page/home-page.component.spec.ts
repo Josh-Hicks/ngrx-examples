@@ -1,8 +1,3 @@
-import {
-  fetchUsers,
-  toggleAccordion,
-  userEnroll
-} from 'src/app/store/app.actions';
 import { Mock, mockService } from 'src/test-utils';
 import { HomePageComponent } from './home-page.component';
 import { HomePageFacade } from './home-page.facade';
@@ -23,7 +18,7 @@ describe('HomePageComponent', () => {
     component.toggleAccordion();
 
     // then
-    expect(facade.dispatch).toHaveBeenCalledWith(toggleAccordion());
+    expect(facade.toggleAccordion).toHaveBeenCalled();
   });
 
   it('should dispatch [App Home] Fetch Users action on fetchUsers', () => {
@@ -31,7 +26,7 @@ describe('HomePageComponent', () => {
     component.fetchUsers();
 
     // then
-    expect(facade.dispatch).toHaveBeenCalledWith(fetchUsers());
+    expect(facade.fetchUsers).toHaveBeenCalled();
   });
 
   it('should dispatch [App Home] User Enroll action on enroll', () => {
@@ -39,6 +34,6 @@ describe('HomePageComponent', () => {
     component.enroll();
 
     // then
-    expect(facade.dispatch).toHaveBeenCalledWith(userEnroll());
+    expect(facade.enroll).toHaveBeenCalled();
   });
 });

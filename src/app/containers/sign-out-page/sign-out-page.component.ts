@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { userSignIn } from '../../store/app.actions';
 import { SignOutPageFacade } from './sign-out-page.facade';
 
 @Component({
@@ -13,7 +12,7 @@ export class SignOutPageComponent {
   constructor(public facade: SignOutPageFacade, private router: Router) {}
 
   login() {
-    this.facade.dispatch(userSignIn());
+    this.facade.signIn();
     this.router.navigateByUrl('/home');
   }
 }

@@ -1,9 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  fetchUsers,
-  toggleAccordion,
-  userEnroll
-} from '../../store/app.actions';
 import { HomePageFacade } from './home-page.facade';
 
 @Component({
@@ -16,14 +11,14 @@ export class HomePageComponent {
   constructor(public facade: HomePageFacade) {}
 
   toggleAccordion() {
-    this.facade.dispatch(toggleAccordion());
+    this.facade.toggleAccordion();
   }
 
   fetchUsers() {
-    this.facade.dispatch(fetchUsers());
+    this.facade.fetchUsers();
   }
 
   enroll() {
-    this.facade.dispatch(userEnroll());
+    this.facade.enroll();
   }
 }

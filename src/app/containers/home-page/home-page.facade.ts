@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
-import * as fromApp from 'src/app/store/app.reducer';
+import { Store } from '@ngrx/store';
+import {
+  fetchUsers,
+  toggleAccordion,
+  userEnroll
+} from 'src/app/store/app.actions';
+import { AppState } from 'src/app/store/app.reducer';
 import {
   selectAppAccordionOpen,
   selectAppEnrolled,
@@ -12,14 +17,22 @@ import {
   providedIn: 'root',
 })
 export class HomePageFacade {
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   users$ = this.store.select(selectAppUsers);
   signedIn$ = this.store.select(selectAppSignedIn);
   enrolled$ = this.store.select(selectAppEnrolled);
   accordionOpen$ = this.store.select(selectAppAccordionOpen);
 
-  dispatch(action: Action) {
-    this.store.dispatch(action);
+  toggleAccordion() {
+    this.store.dispatch(toggleAccordion());
+  }
+
+  enroll() {
+    this.store.dispatch(userEnroll());
+  }
+
+  fetchUsers() {
+    this.store.dispatch(fetchUsers());
   }
 }
