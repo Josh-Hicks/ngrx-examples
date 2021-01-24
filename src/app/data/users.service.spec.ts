@@ -18,7 +18,6 @@ describe('UserService', () => {
     service.fetchUsers();
 
     // then
-    expect(http.get).toHaveBeenCalled();
     expect(http.get).toHaveBeenCalledWith(
       'https://jsonplaceholder.typicode.com/users'
     );

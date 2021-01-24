@@ -22,7 +22,6 @@ describe('SignOutPageFacade', () => {
     facade.signIn();
 
     // then
-    expect(store.dispatch).toHaveBeenCalled();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 });

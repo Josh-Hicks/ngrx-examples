@@ -26,7 +26,6 @@ describe('HomePageFacade', () => {
     facade.toggleAccordion();
 
     // then
-    expect(store.dispatch).toHaveBeenCalled();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
@@ -38,7 +37,6 @@ describe('HomePageFacade', () => {
     facade.enroll();
 
     // then
-    expect(store.dispatch).toHaveBeenCalled();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
@@ -50,7 +48,6 @@ describe('HomePageFacade', () => {
     facade.fetchUsers();
 
     // then
-    expect(store.dispatch).toHaveBeenCalled();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 });

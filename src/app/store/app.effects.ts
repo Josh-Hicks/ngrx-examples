@@ -48,8 +48,8 @@ export class AppEffects {
       return this.actions$.pipe(
         ofType(AppActions.userEnroll),
         tap((action) => {
-          if (this.localStorage && !this.localStorage.getItem('enrolled')) {
-            this.localStorage.setItem('enrolled', JSON.stringify(Date.now()));
+          if (this.storageService && !this.storageService.getItem('enrolled')) {
+            this.storageService.setItem('enrolled', JSON.stringify(Date.now()));
           }
         })
       );
@@ -62,7 +62,7 @@ export class AppEffects {
   constructor(
     private actions$: Actions,
     private userService: UserService,
-    private localStorage: LocalStorageService,
+    private storageService: LocalStorageService,
     private store: Store<AppState>
   ) {}
 }

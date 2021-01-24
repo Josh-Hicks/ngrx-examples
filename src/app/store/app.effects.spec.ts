@@ -73,7 +73,6 @@ describe('AppEffects', () => {
     // then
     effects.onEnroll$.subscribe((action) => {
       expect(action).toEqual(AppActions.userEnroll());
-      expect(localStorageService).toHaveBeenCalled();
     });
   });
 });

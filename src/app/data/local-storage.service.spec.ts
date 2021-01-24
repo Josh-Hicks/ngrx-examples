@@ -17,7 +17,6 @@ describe('LocalStorageService', () => {
     service.setItem('test', 'Test Value');
 
     // then
-    expect(setItem).toHaveBeenCalled();
     expect(setItem).toHaveBeenCalledWith('test', 'Test Value');
   });
 
@@ -35,7 +34,6 @@ describe('LocalStorageService', () => {
 
     // then
     expect(value).toEqual(testValue);
-    expect(getItem).toHaveBeenCalled();
     expect(getItem).toHaveBeenCalledWith(testKey);
   });
 });
